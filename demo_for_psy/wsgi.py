@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+from demo_for_psy.asgi import application
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'demo_for_psy.settings')
 
-application = get_wsgi_application()
+app = application
