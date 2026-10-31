@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ shop.name }} — кризисный психолог</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'demo_psy/css/style.css' %}">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header reveal">
+        <div class="container header-inner">
+            <a href="#" class="logo">{{ shop.name }}</a>
+            <nav class="nav">
+                <a href="#about" class="nav-link">Обо мне</a>
+                <a href="#services" class="nav-link">Услуги</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+            <a href="{{ shop.social_link }}" class="btn btn-small" target="_blank">Написать</a>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <span class="hero-badge reveal">Бережно и без осуждения</span>
+                <h1 class="hero-title reveal">
+                    Пространство, где можно<br>
+                    <span class="gradient-text">быть собой</span>
+                </h1>
+                <p class="hero-subtitle reveal">
+                    Помогаю справляться с кризисами, тревогой и сложностями в отношениях. Индивидуально и в мини-группах.
+                </p>
+                <div class="hero-actions reveal">
+                    <a href="#services" class="btn">Посмотреть услуги</a>
+                    <a href="{{ shop.social_link }}" class="btn btn-outline" target="_blank">Написать нам</a>
+                </div>
+            </div>
+            <div class="hero-image reveal">
+                <div class="hero-card">
+                    <span class="hero-card-label">Первая встреча</span>
+                    <p class="hero-card-title">Диагностическая консультация</p>
+                    <p class="hero-card-price">Бесплатно</p>
+                    <div class="hero-card-line"></div>
+                    <p class="hero-card-note">30 минут · Онлайн или в кабинете</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="about">
+        <div class="container about-inner">
+            <h2 class="reveal">Обо мне</h2>
+            <p class="about-text reveal">{{ shop.description }}</p>
+            <div class="features">
+                <div class="feature reveal">
+                    <span class="feature-icon">🌿</span>
+                    <h3>Бережный подход</h3>
+                    <p>Без давления и оценок. Вы сами решаете, с какой скоростью двигаться.</p>
+                </div>
+                <div class="feature reveal">
+                    <span class="feature-icon">🤝</span>
+                    <h3>Конфиденциально</h3>
+                    <p>Всё, что происходит на сессии, остаётся между нами.</p>
+                </div>
+                <div class="feature reveal">
+                    <span class="feature-icon">💬</span>
+                    <h3>Онлайн и офлайн</h3>
+                    <p>Работаю в кабинете и по видеосвязи — как вам удобнее.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги и Пакеты -->
+    <section id="services" class="menu">
+        <div class="container">
+            <h2 class="reveal">Услуги и консультации</h2>
+
+            <!-- Список обычных услуг -->
+            <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 600px; margin-bottom: 60px;">
+                <div class="menu-column reveal">
+                    <ul>
+                        {% for item in services %}
+                            <li class="menu-item">
+                                <span class="menu-name">{{ item.name }}</span>
+                                <span class="menu-dots"></span>
+                                <span class="menu-price">{{ item.price }} {% if item.price != 'Бесплатно' and item.price != 'Уточнять' and item.price != 'Индивидуально' %}₽{% endif %}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Карточки пакетов -->
+            <h2 class="reveal" style="margin-top: 60px; text-align: center;">Программы сопровождения</h2>
+            <p class="reveal" style="text-align: center; color: var(--accent-light); margin-bottom: 40px;">Выберите формат, который подходит именно вам</p>
+
+            <div class="packages-grid">
+                {% for pkg in packages %}
+                    <div class="package-card reveal {% if pkg.is_popular %}popular{% endif %}">
+                        {% if pkg.is_popular %}
+                            <div class="popular-badge">Выбор клиентов</div>
+                        {% endif %}
+                        <h3>{{ pkg.name }}</h3>
+                        <div class="package-price">{{ pkg.price }} ₽</div>
+                        <p class="package-desc">{{ pkg.description }}</p>
+                        <ul class="package-features">
+                            {% for feature in pkg.features %}
+                                <li>✓ {{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <a href="{{ shop.social_link }}" class="btn btn-package" target="_blank">Записаться</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container contacts-inner">
+            <div class="contacts-text reveal">
+                <h2>Контакты</h2>
+                <p><strong>Адрес:</strong> {{ shop.address }}</p>
+                <p><strong>Телефон:</strong> {{ shop.phone }}</p>
+                <p><strong>Часы работы:</strong> {{ shop.work_hours }}</p>
+                <a href="{{ shop.social_link }}" class="btn" target="_blank">Написать в {{ shop.social_name }}</a>
+            </div>
+            <div class="contacts-card reveal">
+                <p class="contacts-card-title">Первый шаг</p>
+                <p>Напишите мне — я отвечу на вопросы и помогу выбрать удобное время.</p>
+                <a href="{{ shop.social_link }}" class="btn btn-outline" target="_blank">Написать в {{ shop.social_name }}</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 {{ shop.name }}</p>
+            <p>Пространство для себя</p>
+        </div>
+    </footer>
+
+    <!-- Скрипт анимаций -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealElements.forEach((el) => observer.observe(el));
+            window.addEventListener('load', () => {
+                document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+                    setTimeout(() => { el.classList.add('visible'); }, i * 120);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

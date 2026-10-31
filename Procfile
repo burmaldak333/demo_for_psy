@@ -1,0 +1,1 @@
+web: gunicorn demo_for_psy.wsgi:application

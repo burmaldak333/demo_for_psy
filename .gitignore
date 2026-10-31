@@ -1,0 +1,21 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Секретные ключи и настройки
+.env
+
+# Собранная статика (она создается заново на сервере)
+staticfiles/
+
+# База данных (если она есть)
+db.sqlite3
+
+# Мусор Python и Django
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+local_settings.py
+.DS_Store
