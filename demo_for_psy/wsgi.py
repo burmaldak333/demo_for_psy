@@ -15,4 +15,5 @@ from demo_for_psy.asgi import application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'demo_for_psy.settings')
 
-app = application
+application = get_wsgi_application()
+app = application  # <--- ЭТА СТРОКА ОБЯЗАТЕЛЬНА
