@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "demo_for_psy/wsgi.py",
+      "src": "demo_for_psy/demo_for_psy/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "demo_for_psy/wsgi.py"
+      "dest": "demo_for_psy/demo_for_psy/wsgi.py"
     }
   ]
 }
