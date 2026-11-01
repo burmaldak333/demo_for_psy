@@ -1,5 +1,7 @@
+from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('demo_psy.urls')), # <--- Здесь demo_psy, а не main
+    path('admin/', admin.site.urls),  # <--- ВОТ ЭТА СТРОКА ДОЛЖНА БЫТЬ
+    path('', include('demo_psy.urls')),
 ]

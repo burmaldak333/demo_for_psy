@@ -114,9 +114,7 @@
                         <div class="package-price">{{ pkg.price }} ₽</div>
                         <p class="package-desc">{{ pkg.description }}</p>
                         <ul class="package-features">
-                            {% for feature in pkg.features %}
-                                <li>✓ {{ feature }}</li>
-                            {% endfor %}
+                            {{ pkg.features|linebreaks }}
                         </ul>
                         <a href="{{ shop.social_link }}" class="btn btn-package" target="_blank">Записаться</a>
                     </div>

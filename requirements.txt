@@ -1,4 +1,4 @@
 Django
-whitenoise
 gunicorn
+whitenoise
 python-dotenv

@@ -1,6 +1,6 @@
 :root {
-    --bg: #faf9f6;        /* Теплый белый */
-    --text: #2c3e35;      /* Глубокий изумрудный */
+    --bg: #cccabf;        /* Теплый белый */
+    --text: #647e64;      /* Глубокий изумрудный */
     --text-light: #5e7368; /* Светлый зеленоватый */
     --accent: #a4b49d;    /* Шалфейный */
     --border: #e2e5df;
@@ -353,6 +353,14 @@ h1, h2, h3 {
     color: #e0f0ef;
     font-size: 0.95rem;
     border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.package-features p {
+    margin-bottom: 8px;
+    color: #e0f0ef;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 8px;
 }
 
 .btn-package {
